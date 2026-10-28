@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Englische Version aller Texte. Android waehlt diese Datei automatisch, wenn die
+     Systemsprache des Geraets auf Englisch steht - sonst gilt die deutsche Version aus
+     values/strings.xml. Kein Umschalter in der App noetig, laeuft rein ueber die
+     Spracheinstellung des Handys (Einstellungen -> Allgemeine Verwaltung -> Sprache). -->
+<resources>
+    <string name="app_name">Blutige Seiten Kiosk</string>
+
+    <string name="menu_title">Escape à la carte</string>
+    <string name="btn_call">Phone</string>
+    <string name="btn_qr">Scan QR code</string>
+    <string name="btn_video">Watch video</string>
+    <string name="btn_sms">Message to game master</string>
+
+    <string name="call_title">Enter number</string>
+    <string name="call_button">Call</string>
+    <string name="call_clear">Delete</string>
+    <string name="back_to_menu">Back to menu</string>
+
+    <string name="qr_hint">Point the camera at the QR code</string>
+    <string name="qr_start">Start scanning</string>
+    <string name="qr_wrong_code">This code does not belong to this game.</string>
+    <string name="qr_scan_failed">Scan failed, please try again.</string>
+
+    <string name="video_loading">Loading video…</string>
+
+    <string name="sms_hint">Your message to the game master</string>
+    <string name="sms_send">Send</string>
+    <string name="sms_sent">Message sent.</string>
+    <string name="sms_failed">Sending failed, please try again.</string>
+    <string name="sms_permission_needed">Without SMS permission, no message can be sent.</string>
+
+    <string name="call_permission_needed">Without call permission, no call can be placed.</string>
+    <string name="call_number_not_allowed">This number is not reachable in this game.</string>
+
+    <!-- Labels on the recreated home screen -->
+    <string name="home_call">Phone</string>
+    <string name="home_sms">Messages</string>
+    <string name="home_scanner">Scanner</string>
+    <string name="home_video">Video</string>
+
+    <!-- Screen reader descriptions (not visible, accessibility only) -->
+    <string name="cd_back">Back</string>
+    <string name="cd_call_button">Call</string>
+    <string name="cd_delete">Delete</string>
+</resources>

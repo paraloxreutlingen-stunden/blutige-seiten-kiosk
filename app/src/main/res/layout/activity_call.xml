@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical">
+
+    <!-- Dezente Zurueck-Ecke statt grossem "Zurueck zum Menue"-Button - wirkt wie eine
+         normale App-Navigation statt wie ein Kiosk-Hinweis. -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:scaleType="fitCenter"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/cd_back" />
+
+    <!-- Nummernanzeige, grossflaechig wie im echten Telefon-Dialer -->
+    <TextView
+        android:id="@+id/numberDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="38sp"
+        android:letterSpacing="0.05"
+        android:minHeight="1dp" />
+
+    <!-- Ziffernblock 3x4 mit Buchstaben, wie im Original-Screenshot -->
+    <Space android:layout_width="match_parent" android:layout_height="24dp" />
+    <GridLayout
+        android:id="@+id/dialPad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
+
+    <!-- Untere Reihe: Tastenfeld-Icon (Deko) - gruener Anruf-Button - Loeschen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="28dp">
+
+        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btnDial"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="18dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/call_button_background"
+            android:src="@drawable/ic_call"
+            android:contentDescription="@string/cd_call_button" />
+
+        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btnClear"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="24dp"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_backspace"
+            android:contentDescription="@string/cd_delete" />
+
+    </LinearLayout>
+
+</LinearLayout>

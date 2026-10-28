@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blutige Seiten Kiosk</string>
+
+    <string name="menu_title">Escape à la carte</string>
+    <string name="btn_call">Telefon</string>
+    <string name="btn_qr">QR-Code scannen</string>
+    <string name="btn_video">Video ansehen</string>
+    <string name="btn_sms">Nachricht an Spielleitung</string>
+
+    <string name="call_title">Nummer eingeben</string>
+    <string name="call_button">Anrufen</string>
+    <string name="call_clear">Löschen</string>
+    <string name="back_to_menu">Zurück zum Menü</string>
+
+    <string name="qr_hint">Richte die Kamera auf den QR-Code</string>
+    <string name="qr_start">Scannen starten</string>
+    <string name="qr_wrong_code">Dieser Code gehört nicht zu diesem Spiel.</string>
+    <string name="qr_scan_failed">Scan fehlgeschlagen, bitte nochmal versuchen.</string>
+
+    <string name="video_loading">Video wird geladen…</string>
+
+    <string name="sms_hint">Deine Nachricht an die Spielleitung</string>
+    <string name="sms_send">Senden</string>
+    <string name="sms_sent">Nachricht gesendet.</string>
+    <string name="sms_failed">Senden fehlgeschlagen, bitte nochmal versuchen.</string>
+    <string name="sms_permission_needed">Ohne SMS-Berechtigung kann keine Nachricht gesendet werden.</string>
+
+    <string name="call_permission_needed">Ohne Anruf-Berechtigung kann nicht angerufen werden.</string>
+    <string name="call_number_not_allowed">Diese Nummer ist in diesem Spiel nicht erreichbar.</string>
+
+    <!-- Beschriftungen auf dem nachgebauten Homescreen -->
+    <string name="home_call">Telefon</string>
+    <string name="home_sms">Nachrichten</string>
+    <string name="home_scanner">Scanner</string>
+    <string name="home_video">Video</string>
+
+    <!-- Beschreibungen fuer Screenreader (nicht sichtbar, aber fuer Barrierefreiheit) -->
+    <string name="cd_back">Zurück</string>
+    <string name="cd_call_button">Anrufen</string>
+    <string name="cd_delete">Löschen</string>
+</resources>

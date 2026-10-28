@@ -1,0 +1,38 @@
+name: APK bauen
+
+# Baut bei jedem Push nach "main" automatisch eine installierbare APK-Datei
+# und stellt sie als Download bereit (Tab "Actions" -> jeweiliger Lauf ->
+# Abschnitt "Artifacts" ganz unten). Kein Android Studio noetig.
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v7
+
+      - name: Java (JDK 17) einrichten
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v4
+
+      - name: gradlew ausfuehrbar machen
+        run: chmod +x ./gradlew
+
+      - name: APK bauen (Debug)
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: APK als Download bereitstellen
+        uses: actions/upload-artifact@v7
+        with:
+          name: BlutigeSeitenKiosk-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 90

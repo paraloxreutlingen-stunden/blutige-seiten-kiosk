@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Neutrale Grundform - die eigentliche Farbe kommt pro Icon ueber android:backgroundTint
+     in der jeweiligen Layout-Datei (jede App-Kachel bekommt ihre eigene, zur echten
+     App passende Farbe statt eines einheitlichen Rot). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <corners android:radius="16dp" />
+</shape>

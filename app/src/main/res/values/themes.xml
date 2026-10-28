@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.BlutigeSeitenKiosk" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
+    </style>
+
+    <!-- Grosse, gut treffbare Buttons - wichtig, da das Handy im Spiel-Stress bedient wird -->
+    <style name="KioskButton" parent="Widget.Material3.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="backgroundTint">@color/accent</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- App-Icon auf dem nachgebauten Homescreen: abgerundetes, farbiges Quadrat -->
+    <style name="HomeIconBackground">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/icon_background</item>
+        <item name="android:padding">14dp</item>
+    </style>
+
+    <!-- Beschriftung unter einem Homescreen-Icon, mit Schatten fuer Lesbarkeit auf Fotos -->
+    <style name="HomeIconLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:shadowColor">#CC000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">3</item>
+    </style>
+
+    <!-- Kleine, gedaempfte Beschriftung im Dialer (dekorative Zeilen/Tabs) -->
+    <style name="DialerHintLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">#B0B0B0</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Grosse Ziffer im Dialer-Ziffernblock -->
+    <style name="DialPadDigit">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Kleine Buchstaben unter der Ziffer (z.B. "ABC" unter der 2) -->
+    <style name="DialPadLetters">
+        <item name="android:textColor">#9E9E9E</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0.15</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>
