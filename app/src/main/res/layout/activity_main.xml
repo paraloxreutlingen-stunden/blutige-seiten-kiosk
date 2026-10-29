@@ -12,6 +12,47 @@
         android:src="@drawable/wallpaper_cat"
         android:contentDescription="@null" />
 
+    <!-- Sperrbildschirm-Optik oben: festes Datum (Spieldatum, aendert sich nie) ueber der
+         echten, live laufenden Systemuhrzeit - wie auf einem normalen Sperrbildschirm.
+         android:format12Hour/format24Hour gesetzt: TextClock uebernimmt automatisch die
+         12h/24h-Einstellung des jeweiligen Geraets, genau wie ein echter Sperrbildschirm. -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lockDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lock_screen_date"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:shadowColor="#AA000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="4" />
+
+        <TextClock
+            android:id="@+id/lockClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:format12Hour="h:mm"
+            android:format24Hour="HH:mm"
+            android:textColor="#FFFFFF"
+            android:textSize="64sp"
+            android:fontFamily="sans-serif-light"
+            android:shadowColor="#AA000000"
+            android:shadowDx="0"
+            android:shadowDy="2"
+            android:shadowRadius="6" />
+
+    </LinearLayout>
+
     <!-- Unten: Dock mit genau den vier echten Funktionen, keine zusaetzlichen
          Deko-Icons - nur, was im Spiel tatsaechlich gebraucht wird. -->
     <LinearLayout

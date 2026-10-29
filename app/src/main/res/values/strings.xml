@@ -35,6 +35,10 @@
     <string name="home_scanner">Scanner</string>
     <string name="home_video">Video</string>
 
+    <!-- Festes Datum auf dem Sperrbildschirm-Look des Homescreens - absichtlich fix,
+         kein echtes aktuelles Datum (Spieldatum). -->
+    <string name="lock_screen_date">So., 28. Jun.</string>
+
     <!-- Beschreibungen fuer Screenreader (nicht sichtbar, aber fuer Barrierefreiheit) -->
     <string name="cd_back">Zurück</string>
     <string name="cd_call_button">Anrufen</string>

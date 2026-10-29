@@ -39,6 +39,10 @@
     <string name="home_scanner">Scanner</string>
     <string name="home_video">Video</string>
 
+    <!-- Fixed date on the lock-screen look of the home screen - intentionally fixed,
+         not the real current date (in-game date). -->
+    <string name="lock_screen_date">Sun, Jun 28</string>
+
     <!-- Screen reader descriptions (not visible, accessibility only) -->
     <string name="cd_back">Back</string>
     <string name="cd_call_button">Call</string>
