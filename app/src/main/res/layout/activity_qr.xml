@@ -21,12 +21,14 @@
         android:textSize="16sp"
         android:gravity="center" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="24dp"
-        android:text="@string/back_to_menu" />
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/back_bar_background"
+        android:scaleType="center"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/back_to_menu" />
 
 </FrameLayout>

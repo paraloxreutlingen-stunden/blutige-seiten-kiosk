@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dezente, neutrale Leiste fuer den reinen Icon-Zurueck-Button (ersetzt den
+     frueheren Text-Button "Zurueck zum Menue" - funktioniert ohne Sprache). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/surface" />
+</shape>

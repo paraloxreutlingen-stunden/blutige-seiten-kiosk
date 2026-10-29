@@ -7,45 +7,12 @@
         <item name="android:navigationBarColor">@color/background</item>
     </style>
 
-    <!-- Grosse, gut treffbare Buttons - wichtig, da das Handy im Spiel-Stress bedient wird -->
-    <style name="KioskButton" parent="Widget.Material3.Button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">72dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:textSize">18sp</item>
-        <item name="backgroundTint">@color/accent</item>
-        <item name="android:textColor">@color/text_primary</item>
-    </style>
-
     <!-- App-Icon auf dem nachgebauten Homescreen: abgerundetes, farbiges Quadrat -->
     <style name="HomeIconBackground">
         <item name="android:layout_width">56dp</item>
         <item name="android:layout_height">56dp</item>
         <item name="android:background">@drawable/icon_background</item>
         <item name="android:padding">14dp</item>
-    </style>
-
-    <!-- Beschriftung unter einem Homescreen-Icon, mit Schatten fuer Lesbarkeit auf Fotos -->
-    <style name="HomeIconLabel">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:shadowColor">#CC000000</item>
-        <item name="android:shadowDx">0</item>
-        <item name="android:shadowDy">1</item>
-        <item name="android:shadowRadius">3</item>
-    </style>
-
-    <!-- Kleine, gedaempfte Beschriftung im Dialer (dekorative Zeilen/Tabs) -->
-    <style name="DialerHintLabel">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:textColor">#B0B0B0</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:gravity">center</item>
     </style>
 
     <!-- Grosse Ziffer im Dialer-Ziffernblock -->

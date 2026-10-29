@@ -20,15 +20,23 @@
         android:inputType="textMultiLine|textCapSentences"
         android:layout_marginBottom="16dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnSend"
-        style="@style/KioskButton"
-        android:text="@string/sms_send" />
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/send_button_background"
+        android:scaleType="center"
+        android:src="@drawable/ic_send"
+        android:contentDescription="@string/sms_send" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="@string/back_to_menu" />
+        android:background="@drawable/back_bar_background"
+        android:scaleType="center"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/back_to_menu" />
 
 </LinearLayout>
