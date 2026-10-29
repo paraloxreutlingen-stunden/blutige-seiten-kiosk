@@ -52,10 +52,16 @@
             android:screenOrientation="portrait"
             android:excludeFromRecents="true" />
 
+        <!-- Video ist im Querformat gedreht (1920x1080) - eigener Bildschirm darf sich daher
+             mitdrehen (sensorLandscape: dreht zwischen Quer- und umgekehrtem Querformat je nach
+             Haltung, bleibt aber nie im Hochformat haengen) und laeuft im Vollbildmodus.
+             configChanges verhindert, dass die Activity bei jeder Drehung neu startet und das
+             Video von vorne beginnt. -->
         <activity
             android:name=".VideoActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:excludeFromRecents="true" />
 
         <activity
