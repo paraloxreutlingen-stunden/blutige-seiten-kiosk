@@ -33,14 +33,16 @@
         android:letterSpacing="0.05"
         android:minHeight="1dp" />
 
-    <!-- Ziffernblock 3x4 mit Buchstaben, wie im Original-Screenshot -->
+    <!-- Ziffernblock 3x4 mit Buchstaben, wie im Original-Screenshot.
+         Bewusst eine LinearLayout-Zeilen-Struktur statt GridLayout mit Gewichtung:
+         GridLayout-Spalten ziehen sich ohne explizites Fill-Alignment nicht gleichmaessig
+         ueber die Breite, dadurch wirkte das Feld nach links verschoben statt zentriert. -->
     <Space android:layout_width="match_parent" android:layout_height="24dp" />
-    <GridLayout
+    <LinearLayout
         android:id="@+id/dialPad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="4"
+        android:orientation="vertical"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp" />
 

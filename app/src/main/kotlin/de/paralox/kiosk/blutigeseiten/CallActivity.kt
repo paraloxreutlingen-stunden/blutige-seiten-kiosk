@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -118,42 +117,53 @@ class CallActivity : KioskBaseActivity() {
         "*" to "", "0" to "+", "#" to ""
     )
 
+    // 4 Zeilen mit je 3 gleich breiten Zellen (statt GridLayout mit Gewichtung - siehe
+    // Kommentar in activity_call.xml, warum das zu einem nach links verschobenen Feld fuehrte).
     private fun buildDialPad() {
-        val grid: GridLayout = binding.dialPad
-        for ((digit, letters) in letterMap) {
-            val cell = LinearLayout(this).apply {
-                orientation = LinearLayout.VERTICAL
-                gravity = Gravity.CENTER
-                isClickable = true
-                isFocusable = true
-                val outValue = android.util.TypedValue()
-                theme.resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true)
-                setBackgroundResource(outValue.resourceId)
-
-                val params = GridLayout.LayoutParams().apply {
-                    width = 0
-                    height = GridLayout.LayoutParams.WRAP_CONTENT
-                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                    rowSpec = GridLayout.spec(GridLayout.UNDEFINED)
-                    setMargins(4, 14, 4, 14)
-                }
-                layoutParams = params
-
-                addView(TextView(context).apply {
-                    text = digit
-                    setTextAppearance(R.style.DialPadDigit)
-                })
-                addView(TextView(context).apply {
-                    text = letters
-                    setTextAppearance(R.style.DialPadLetters)
-                })
-
-                setOnClickListener {
-                    typedNumber.append(digit)
-                    updateDisplay()
-                }
+        val container: LinearLayout = binding.dialPad
+        letterMap.entries.chunked(3).forEach { rowEntries ->
+            val row = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
             }
-            grid.addView(cell)
+            for ((digit, letters) in rowEntries) {
+                val cell = LinearLayout(this).apply {
+                    orientation = LinearLayout.VERTICAL
+                    gravity = Gravity.CENTER
+                    isClickable = true
+                    isFocusable = true
+                    val outValue = android.util.TypedValue()
+                    theme.resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true)
+                    setBackgroundResource(outValue.resourceId)
+
+                    layoutParams = LinearLayout.LayoutParams(
+                        0,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        1f
+                    ).apply { setMargins(4, 14, 4, 14) }
+
+                    addView(TextView(context).apply {
+                        text = digit
+                        setTextAppearance(R.style.DialPadDigit)
+                        gravity = Gravity.CENTER
+                    })
+                    addView(TextView(context).apply {
+                        text = letters
+                        setTextAppearance(R.style.DialPadLetters)
+                        gravity = Gravity.CENTER
+                    })
+
+                    setOnClickListener {
+                        typedNumber.append(digit)
+                        updateDisplay()
+                    }
+                }
+                row.addView(cell)
+            }
+            container.addView(row)
         }
     }
 
