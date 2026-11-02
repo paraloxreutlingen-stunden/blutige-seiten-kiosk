@@ -7,7 +7,12 @@
     android:background="#121212"
     android:orientation="vertical">
 
-    <Space android:layout_width="match_parent" android:layout_height="48dp" />
+    <!-- Nachgebaute Statusleiste: Uhrzeit, Empfang, WLAN, Akku (siehe StatusBarView) -->
+    <de.paralox.kiosk.blutigeseiten.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="28dp" />
+
+    <Space android:layout_width="match_parent" android:layout_height="20dp" />
 
     <TextView
         android:id="@+id/numberDisplay"

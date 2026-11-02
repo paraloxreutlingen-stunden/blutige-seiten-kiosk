@@ -2,8 +2,13 @@ package de.paralox.kiosk.blutigeseiten
 
 import android.app.ActivityManager
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 
 /**
  * Gemeinsame Basis fuer alle Bildschirme dieser App.
@@ -25,11 +30,31 @@ abstract class KioskBaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Inhalt darf neben die Kamera-Aussparung oben reichen - so sitzt die eigene
+        // Statusleiste links und rechts der Kamera, wie bei der echten Leiste.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes = window.attributes.apply {
+                layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
+        hideRealStatusBar()
         startPinningIfNeeded()
+    }
+
+    /**
+     * Die echte Android-Statusleiste wird ausgeblendet - die App zeigt ihre eigene
+     * (StatusBarView), damit es nie zwei Leisten gibt und sie auf allen Geraeten gleich aussieht.
+     */
+    private fun hideRealStatusBar() {
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            hide(WindowInsetsCompat.Type.statusBars())
+            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
     }
 
     protected fun startPinningIfNeeded() {

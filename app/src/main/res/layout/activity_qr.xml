@@ -9,6 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- Nachgebaute Statusleiste: Uhrzeit, Empfang, WLAN, Akku (siehe StatusBarView) -->
+    <de.paralox.kiosk.blutigeseiten.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_gravity="top"
+        android:background="#66000000" />
+
     <!-- Sucher-Rahmen statt Hinweistext (App ist bewusst textfrei, siehe QrFrameView) -->
     <de.paralox.kiosk.blutigeseiten.QrFrameView
         android:id="@+id/qrFrame"

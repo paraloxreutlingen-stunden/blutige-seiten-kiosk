@@ -6,6 +6,11 @@
     android:background="#121212"
     android:orientation="vertical">
 
+    <!-- Nachgebaute Statusleiste: Uhrzeit, Empfang, WLAN, Akku (siehe StatusBarView) -->
+    <de.paralox.kiosk.blutigeseiten.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="28dp" />
+
     <!-- Dezente Zurueck-Ecke statt grossem "Zurueck zum Menue"-Button - wirkt wie eine
          normale App-Navigation statt wie ein Kiosk-Hinweis. -->
     <ImageButton
@@ -13,7 +18,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         android:padding="12dp"
         android:scaleType="fitCenter"
         android:background="?android:attr/selectableItemBackgroundBorderless"

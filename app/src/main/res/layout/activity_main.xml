@@ -12,6 +12,12 @@
         android:src="@drawable/wallpaper_cat"
         android:contentDescription="@null" />
 
+    <!-- Nachgebaute Statusleiste: Uhrzeit, Empfang, WLAN, Akku (siehe StatusBarView) -->
+    <de.paralox.kiosk.blutigeseiten.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_gravity="top" />
+
     <!-- Sperrbildschirm-Optik oben: festes Datum (Spieldatum, aendert sich nie) ueber der
          echten, live laufenden Systemuhrzeit - wie auf einem normalen Sperrbildschirm.
          android:format12Hour/format24Hour gesetzt: TextClock uebernimmt automatisch die
