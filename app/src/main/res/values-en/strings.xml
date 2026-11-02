@@ -47,4 +47,16 @@
     <string name="cd_back">Back</string>
     <string name="cd_call_button">Call</string>
     <string name="cd_delete">Delete</string>
+
+    <!-- Own in-call screen -->
+    <string name="incall_calling">Calling…</string>
+    <string name="incall_ended">Call ended</string>
+    <string name="cd_hang_up">Hang up</string>
+    <string name="cd_speaker">Speaker</string>
+
+    <!-- One-time setup (only seen by the game master) -->
+    <string name="setup_title">Setup</string>
+    <string name="setup_permissions_message">The app needs the Phone, SMS and Camera permissions. Tap “Settings”, then “Permissions”, and allow all three.</string>
+    <string name="setup_dialer_message">Please set “Blutige Seiten Kiosk” as the default phone app (Default apps → Phone app). Only then can players press keys like 1 or 2 during a call.</string>
+    <string name="setup_open_settings">Settings</string>
 </resources>

@@ -43,4 +43,16 @@
     <string name="cd_back">Zurück</string>
     <string name="cd_call_button">Anrufen</string>
     <string name="cd_delete">Löschen</string>
+
+    <!-- Eigener Anrufbildschirm -->
+    <string name="incall_calling">Wird angerufen…</string>
+    <string name="incall_ended">Anruf beendet</string>
+    <string name="cd_hang_up">Auflegen</string>
+    <string name="cd_speaker">Lautsprecher</string>
+
+    <!-- Einmalige Einrichtung (nur fuer die Spielleitung sichtbar) -->
+    <string name="setup_title">Einrichtung</string>
+    <string name="setup_permissions_message">Die App braucht die Berechtigungen Telefon, SMS und Kamera. Tippe auf „Einstellungen“, dann auf „Berechtigungen“, und erlaube alle drei.</string>
+    <string name="setup_dialer_message">Bitte lege „Blutige Seiten Kiosk“ als Standard-Telefon-App fest (Standard-Apps → Telefon-App). Nur dann können die Spielenden während eines Anrufs Tasten wie 1 oder 2 drücken.</string>
+    <string name="setup_open_settings">Einstellungen</string>
 </resources>

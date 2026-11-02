@@ -1,13 +1,12 @@
 package de.paralox.kiosk.blutigeseiten
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.telecom.TelecomManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import de.paralox.kiosk.blutigeseiten.databinding.ActivityCallBinding
@@ -72,7 +71,10 @@ class CallActivity : KioskBaseActivity() {
         binding = ActivityCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        buildDialPad()
+        DialPad.build(this, binding.dialPad) { digit ->
+            typedNumber.append(digit)
+            updateDisplay()
+        }
 
         binding.btnClear.setOnClickListener {
             if (typedNumber.isNotEmpty()) {
@@ -109,70 +111,28 @@ class CallActivity : KioskBaseActivity() {
         updateDisplay()
     }
 
-    // Ziffer -> Buchstaben, wie auf einem echten Telefon-Dialpad.
-    private val letterMap = mapOf(
-        "1" to "", "2" to "ABC", "3" to "DEF",
-        "4" to "GHI", "5" to "JKL", "6" to "MNO",
-        "7" to "PQRS", "8" to "TUV", "9" to "WXYZ",
-        "*" to "", "0" to "+", "#" to ""
-    )
-
-    // 4 Zeilen mit je 3 gleich breiten Zellen (statt GridLayout mit Gewichtung - siehe
-    // Kommentar in activity_call.xml, warum das zu einem nach links verschobenen Feld fuehrte).
-    private fun buildDialPad() {
-        val container: LinearLayout = binding.dialPad
-        letterMap.entries.chunked(3).forEach { rowEntries ->
-            val row = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-            }
-            for ((digit, letters) in rowEntries) {
-                val cell = LinearLayout(this).apply {
-                    orientation = LinearLayout.VERTICAL
-                    gravity = Gravity.CENTER
-                    isClickable = true
-                    isFocusable = true
-                    val outValue = android.util.TypedValue()
-                    theme.resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true)
-                    setBackgroundResource(outValue.resourceId)
-
-                    layoutParams = LinearLayout.LayoutParams(
-                        0,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        1f
-                    ).apply { setMargins(4, 14, 4, 14) }
-
-                    addView(TextView(context).apply {
-                        text = digit
-                        setTextAppearance(R.style.DialPadDigit)
-                        gravity = Gravity.CENTER
-                    })
-                    addView(TextView(context).apply {
-                        text = letters
-                        setTextAppearance(R.style.DialPadLetters)
-                        gravity = Gravity.CENTER
-                    })
-
-                    setOnClickListener {
-                        typedNumber.append(digit)
-                        updateDisplay()
-                    }
-                }
-                row.addView(cell)
-            }
-            container.addView(row)
-        }
-    }
-
     private fun updateDisplay() {
         binding.numberDisplay.text = typedNumber.toString()
     }
 
+    /**
+     * Waehlt ueber TelecomManager statt per ACTION_CALL-Intent: Damit wird keine fremde
+     * Activity gestartet (das blockiert die App-Fixierung). Ist die App Standard-Telefon-App,
+     * landet der Anruf in KioskInCallService und wird im eigenen Anrufbildschirm angezeigt.
+     */
+    @SuppressLint("MissingPermission")
     private fun placeCall() {
-        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${typedNumber}"))
-        startActivity(intent)
+        val number = typedNumber.toString()
+        val telecomManager = getSystemService(TELECOM_SERVICE) as TelecomManager
+        try {
+            telecomManager.placeCall(Uri.fromParts("tel", number, null), Bundle())
+        } catch (_: SecurityException) {
+            Toast.makeText(this, getString(R.string.call_permission_needed), Toast.LENGTH_LONG).show()
+            return
+        }
+        startActivity(
+            Intent(this, InCallActivity::class.java)
+                .putExtra(InCallActivity.EXTRA_NUMBER, number)
+        )
     }
 }

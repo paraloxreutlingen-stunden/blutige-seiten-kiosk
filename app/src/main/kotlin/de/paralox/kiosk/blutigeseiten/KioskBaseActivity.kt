@@ -32,7 +32,11 @@ abstract class KioskBaseActivity : AppCompatActivity() {
         startPinningIfNeeded()
     }
 
-    private fun startPinningIfNeeded() {
+    protected fun startPinningIfNeeded() {
+        // Erst fixieren, wenn die Einrichtung (Berechtigungen + Standard-Telefon-App) fertig
+        // ist - sonst koennten die System-Dialoge dafuer nicht erscheinen. Siehe KioskSetup.
+        if (!KioskSetup.isComplete(this)) return
+
         val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         // Nur anstossen, wenn die App nicht schon fixiert ist - vermeidet unnoetige Systemdialoge.
         if (activityManager.lockTaskModeState == ActivityManager.LOCK_TASK_MODE_NONE) {

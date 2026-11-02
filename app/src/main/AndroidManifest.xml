@@ -12,6 +12,8 @@
     <!-- Fuer das Laden der QR-Zielseite und das Code-Scanner-Modul von Google Play Services -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Bildschirm aus, solange das Handy waehrend eines Anrufs am Ohr ist (Naeherungssensor) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="false"
@@ -34,11 +36,47 @@
             </intent-filter>
         </activity>
 
+        <!-- Waehl-Bildschirm. Die DIAL-Intent-Filter sind Voraussetzung dafuer, dass Android
+             die App als Standard-Telefon-App zulaesst. Eine mitgeschickte Nummer wird bewusst
+             ignoriert - der Ziffernblock ist immer leer. -->
         <activity
             android:name=".CallActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="tel" />
+            </intent-filter>
+        </activity>
+
+        <!-- Eigener Anrufbildschirm (Tasten fuer das easybell-Menue, Lautsprecher, Auflegen) -->
+        <activity
+            android:name=".InCallActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:excludeFromRecents="true" />
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true" />
+
+        <!-- Bekommt als Standard-Telefon-App alle Anrufe vom System (siehe KioskInCallService) -->
+        <service
+            android:name=".KioskInCallService"
+            android:permission="android.permission.BIND_INCALL_SERVICE"
+            android:exported="true">
+            <meta-data
+                android:name="android.telecom.IN_CALL_SERVICE_UI"
+                android:value="true" />
+            <intent-filter>
+                <action android:name="android.telecom.InCallService" />
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".QrActivity"

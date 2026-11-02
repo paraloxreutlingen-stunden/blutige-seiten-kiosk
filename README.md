@@ -27,9 +27,24 @@ die Spielleitung.
    ⚠️ Die genaue Bezeichnung und der Menüpfad unterscheiden sich je nach Android-
    Version und Hersteller (Samsung, Pixel, Xiaomi etc. benennen das teils anders,
    z. B. "Bildschirmfixierung"). Einfach nach "Fixierung" oder "Pin" suchen.
-4. **Blutige Seiten Kiosk** als Standard-Startbildschirm (Home-App) festlegen ist
-   NICHT nötig - die App fixiert sich beim Öffnen automatisch selbst
-   (`startLockTask()`), ihr müsst sie nur einmal öffnen.
+4. **App einmal öffnen und die Einrichtung durchklicken.** Beim ersten Start fragt die
+   App nacheinander:
+   - alle Berechtigungen auf einmal (Telefon, SMS, Kamera) → alle **zulassen**,
+   - „Als Standard-Telefon-App festlegen?" → **Blutige Seiten Kiosk** wählen.
+   Wurde etwas abgelehnt, zeigt die App einen Hinweis mit Knopf zu den passenden
+   Einstellungen. Erst wenn beides erledigt ist, fixiert sich die App selbst
+   (`startLockTask()`). Als Standard-Startbildschirm (Home-App) muss sie NICHT
+   festgelegt werden.
+
+   **Warum Standard-Telefon-App?** Während der App-Fixierung blockiert Android
+   Samsungs Anrufbildschirm. Ohne eigene Telefon-App könnten die Spielenden während
+   eines Anrufs keine Tasten drücken (z. B. 1 = Deutsch, 2 = Englisch im
+   easybell-Menü) und nicht auflegen. Als Standard-Telefon-App zeigt die Kiosk-App
+   ihren eigenen Anrufbildschirm mit Ziffernblock, Lautsprecher und Auflegen-Knopf.
+   Eingehende Anrufe werden automatisch abgelehnt.
+
+   **Nach dem Event:** Einstellungen → Apps → Standard-Apps → Telefon-App wieder auf
+   Samsungs „Telefon" stellen (oder die Kiosk-App deinstallieren).
 
 Die Rufnummer der Spielleitung (0176 80297001) ist bereits fest in der App
 hinterlegt (`SmsActivity.kt`) - dafür ist nichts mehr einzustellen.
@@ -74,7 +89,7 @@ offizielle "Material Symbols" - 1:1 dieselben Pfaddaten wie im echten Google-Ico
 
 | Funktion | Wie es funktioniert |
 |---|---|
-| **Telefon** | Eigener Ziffernblock (kein System-Telefon, keine Kontakte, keine Anrufliste). Ruft direkt über `ACTION_CALL` an. |
+| **Telefon** | Eigener Ziffernblock (kein System-Telefon, keine Kontakte, keine Anrufliste). Nur die drei Spiel-Nummern sind wählbar. Wählt über `TelecomManager.placeCall`; der Anruf läuft im eigenen Anrufbildschirm (`InCallActivity` + `KioskInCallService`) mit Ziffernblock für Tastentöne, Lautsprecher-Knopf, Auflegen-Knopf und Bildschirm-aus am Ohr. |
 | **QR-Code scannen** | Kamera läuft direkt in der App (CameraX + ML Kit, komplett offline). Erkennt nur die hinterlegte Ziel-URL, alles andere wird ignoriert. Bei Treffer öffnet sich eine eingeschränkte Ansicht nur dieser einen Seite. |
 | **Video** | Spielt die im Projekt hinterlegte mp4-Datei (`res/raw/blutige_seiten_loop.mp4`) in Dauerschleife, komplett offline. |
 | **Nachricht an Spielleitung** | Schickt eine SMS direkt per `SmsManager`, OHNE die System-SMS-App zu öffnen - dadurch bleibt gar kein Nachrichtenverlauf auf dem Gerät zurück. |
@@ -146,10 +161,16 @@ Falls doch lieber lokal gebaut werden soll (z. B. durch Benedikt):
   **nicht auf einem echten Smartphone getestet** - nur sorgfältig gegen die
   offizielle Android/CameraX/ML-Kit-Dokumentation geprüft. Vor dem ersten echten
   Spiel unbedingt einmal komplett durchspielen.
-- ⚠️ Ob das Platzieren eines Anrufs (`ACTION_CALL`) auf allen Android-Versionen/
-  Herstellern auch während aktiver App-Fixierung zuverlässig funktioniert, ist nicht
-  zu 100 % verifiziert - in der Praxis sollte es laufen, da Telefonie-UI von Android
-  als Ausnahme behandelt wird, aber bitte einmal live testen.
+- ⚠️ Der eigene Anrufbildschirm (Standard-Telefon-App) wurde in dieser Umgebung
+  nicht auf einem echten Gerät getestet. Bitte prüfen: Anruf geht raus, Taste 1/2
+  kommt bei easybell an, Lautsprecher und Auflegen funktionieren, Bildschirm geht am
+  Ohr aus.
+- Bewusst weggelassen (im Spiel nicht nötig): eingehende Anrufe (werden abgelehnt),
+  Stummschalten, Halten, zweiter Anruf, Bluetooth-Umschaltung.
+- Jeder GitHub-Build wird mit einem neuen Debug-Schlüssel signiert. Eine neue APK
+  lässt sich deshalb meist nicht über die alte installieren („App nicht
+  installiert"/„Konflikt"): alte App vorher deinstallieren, danach die Einrichtung
+  (Schritt 4) wiederholen.
 - ⚠️ Die Ziel-URL `https://escape-a-la-carte.de/blutige-seiten-qr-code-1` konnte ich
   von hier aus nicht erreichen (Verbindungsfehler) - bitte vor dem Einsatz prüfen,
   ob die Seite schon online ist.
