@@ -90,9 +90,9 @@ offizielle "Material Symbols" - 1:1 dieselben Pfaddaten wie im echten Google-Ico
 | Funktion | Wie es funktioniert |
 |---|---|
 | **Telefon** | Eigener Ziffernblock (kein System-Telefon, keine Kontakte, keine Anrufliste). Nur die drei Spiel-Nummern sind wählbar. Wählt über `TelecomManager.placeCall`; der Anruf läuft im eigenen Anrufbildschirm (`InCallActivity` + `KioskInCallService`) mit Ziffernblock für Tastentöne, Lautsprecher-Knopf, Auflegen-Knopf und Bildschirm-aus am Ohr. |
-| **QR-Code scannen** | Kamera läuft direkt in der App (CameraX + ML Kit, komplett offline). Erkennt nur die hinterlegte Ziel-URL, alles andere wird ignoriert. Bei Treffer öffnet sich eine eingeschränkte Ansicht nur dieser einen Seite. |
+| **QR-Code scannen** | Kamera läuft direkt in der App (CameraX + ML Kit, komplett offline). Erkennt nur die hinterlegte Ziel-URL, alles andere wird ignoriert. Ist das Ziel ein Bild, zeigt die App es selbst an: Zoomen mit zwei Fingern, Verschieben, Doppeltippen; die Ansicht dreht sich mit dem Handy. Das Bild wird nur im Arbeitsspeicher gehalten. Ist das Ziel eine Webseite, öffnet sich eine eingeschränkte Webansicht nur dieser Domain. |
 | **Video** | Spielt die im Projekt hinterlegte mp4-Datei (`res/raw/blutige_seiten_loop.mp4`) in Dauerschleife, komplett offline. |
-| **Nachricht an Spielleitung** | Schickt eine SMS direkt per `SmsManager`, OHNE die System-SMS-App zu öffnen - dadurch bleibt gar kein Nachrichtenverlauf auf dem Gerät zurück. |
+| **Nachricht an Spielleitung** | Schickt eine SMS direkt per `SmsManager`, OHNE die System-SMS-App zu öffnen - dadurch bleibt gar kein Nachrichtenverlauf auf dem Gerät zurück. | **Derzeit abgeschaltet** (Icon ausgeblendet, keine SMS-Berechtigung nötig) - zum Wiedereinschalten in `KioskSetup.kt` `SMS_ENABLED = true` setzen. |
 
 ## Build: App auf die Handys bekommen
 

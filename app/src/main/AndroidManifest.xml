@@ -84,10 +84,14 @@
             android:screenOrientation="portrait"
             android:excludeFromRecents="true" />
 
+        <!-- Ansicht des QR-Ziels (Bild): dreht sich mit dem Handy, auch wenn die automatische
+             Drehung in den Einstellungen aus ist (fullSensor). configChanges verhindert, dass
+             das Bild bei jeder Drehung neu geladen wird. -->
         <activity
             android:name=".WebViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:excludeFromRecents="true" />
 
         <!-- Video ist im Querformat gedreht (1920x1080) - eigener Bildschirm darf sich daher

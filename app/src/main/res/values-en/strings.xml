@@ -21,6 +21,7 @@
     <string name="qr_start">Start scanning</string>
     <string name="qr_wrong_code">This code does not belong to this game.</string>
     <string name="qr_scan_failed">Scan failed, please try again.</string>
+    <string name="qr_load_failed">Image could not be loaded. Is there an internet connection?</string>
 
     <string name="video_loading">Loading video…</string>
 
@@ -56,7 +57,7 @@
 
     <!-- One-time setup (only seen by the game master) -->
     <string name="setup_title">Setup</string>
-    <string name="setup_permissions_message">The app needs the Phone, SMS and Camera permissions. Tap “Settings”, then “Permissions”, and allow all three.</string>
+    <string name="setup_permissions_message">The app needs the Phone and Camera permissions (and SMS if the messages feature is on). Tap “Settings”, then “Permissions”, and allow them.</string>
     <string name="setup_dialer_message">Please set “Blutige Seiten Kiosk” as the default phone app (Default apps → Phone app). Only then can players press keys like 1 or 2 during a call.</string>
     <string name="setup_open_settings">Settings</string>
 </resources>

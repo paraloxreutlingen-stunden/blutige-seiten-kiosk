@@ -20,11 +20,18 @@ import androidx.core.content.ContextCompat
  */
 object KioskSetup {
 
-    val requiredPermissions = arrayOf(
+    /**
+     * SMS-Funktion voruebergehend abgeschaltet: Icon ausgeblendet, keine SMS-Berechtigung
+     * noetig. Zum Wiedereinschalten einfach auf true setzen - der Code (SmsActivity) ist
+     * unveraendert vorhanden.
+     */
+    const val SMS_ENABLED = false
+
+    val requiredPermissions: Array<String> = listOfNotNull(
         Manifest.permission.CALL_PHONE,
-        Manifest.permission.SEND_SMS,
+        if (SMS_ENABLED) Manifest.permission.SEND_SMS else null,
         Manifest.permission.CAMERA
-    )
+    ).toTypedArray()
 
     fun missingPermissions(context: Context): List<String> =
         requiredPermissions.filter {

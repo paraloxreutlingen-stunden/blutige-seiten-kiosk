@@ -5,11 +5,33 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <WebView
-        android:id="@+id/webView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+
+        <!-- Bild-Ziel: zoombar (zwei Finger, Doppeltippen), dreht sich mit dem Handy -->
+        <de.paralox.kiosk.blutigeseiten.ZoomImageView
+            android:id="@+id/zoomImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+
+        <!-- Webseiten-Ziel (Fallback, falls ein QR-Code mal auf eine Seite statt ein Bild zeigt) -->
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/btnBack"

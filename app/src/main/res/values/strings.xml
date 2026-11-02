@@ -17,6 +17,7 @@
     <string name="qr_start">Scannen starten</string>
     <string name="qr_wrong_code">Dieser Code gehört nicht zu diesem Spiel.</string>
     <string name="qr_scan_failed">Scan fehlgeschlagen, bitte nochmal versuchen.</string>
+    <string name="qr_load_failed">Bild konnte nicht geladen werden. Besteht eine Internetverbindung?</string>
 
     <string name="video_loading">Video wird geladen…</string>
 
@@ -52,7 +53,7 @@
 
     <!-- Einmalige Einrichtung (nur fuer die Spielleitung sichtbar) -->
     <string name="setup_title">Einrichtung</string>
-    <string name="setup_permissions_message">Die App braucht die Berechtigungen Telefon, SMS und Kamera. Tippe auf „Einstellungen“, dann auf „Berechtigungen“, und erlaube alle drei.</string>
+    <string name="setup_permissions_message">Die App braucht die Berechtigungen Telefon und Kamera (und SMS, falls die Nachrichten-Funktion aktiv ist). Tippe auf „Einstellungen“, dann auf „Berechtigungen“, und erlaube sie.</string>
     <string name="setup_dialer_message">Bitte lege „Blutige Seiten Kiosk“ als Standard-Telefon-App fest (Standard-Apps → Telefon-App). Nur dann können die Spielenden während eines Anrufs Tasten wie 1 oder 2 drücken.</string>
     <string name="setup_open_settings">Einstellungen</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import de.paralox.kiosk.blutigeseiten.databinding.ActivityMainBinding
@@ -54,8 +55,11 @@ class MainActivity : KioskBaseActivity() {
         binding.btnVideo.setOnClickListener {
             startActivity(Intent(this, VideoActivity::class.java))
         }
+        // SMS voruebergehend abgeschaltet (siehe KioskSetup.SMS_ENABLED). Das Dock ist
+        // zentriert und passt sich an - die drei uebrigen Icons verteilen sich automatisch.
+        binding.btnSms.visibility = if (KioskSetup.SMS_ENABLED) View.VISIBLE else View.GONE
         binding.btnSms.setOnClickListener {
-            startActivity(Intent(this, SmsActivity::class.java))
+            if (KioskSetup.SMS_ENABLED) startActivity(Intent(this, SmsActivity::class.java))
         }
     }
 
