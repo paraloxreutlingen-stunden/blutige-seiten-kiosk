@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
@@ -13,7 +14,7 @@ import android.view.animation.LinearInterpolator
 /**
  * Sucher-Rahmen fuer den QR-Scanner - ganz ohne Text, damit die App
  * unabhaengig von der Geraetesprache funktioniert:
- * quadratischer Rahmen mit blauen Eckwinkeln, duenner heller Umrandung und einer
+ * quadratischer Rahmen mit weissen Eckwinkeln, duenner heller Umrandung und einer
  * roten Scan-Linie, die langsam auf und ab laeuft.
  *
  * flashError() laesst den Rahmen kurz rot aufleuchten (z. B. wenn die Kamera nicht startet).
@@ -25,18 +26,21 @@ class QrFrameView @JvmOverloads constructor(
 
     private val density = resources.displayMetrics.density
 
-    private val cornerColor = Color.parseColor("#4285F4")
+    private val cornerColor = Color.WHITE
     private val errorColor = Color.parseColor("#E53935")
 
     private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeWidth = 1f * density
-        color = Color.parseColor("#B3FFFFFF")
+        color = Color.parseColor("#80FFFFFF")
     }
     private val cornerPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeWidth = 5f * density
-        strokeCap = Paint.Cap.SQUARE
+        // Jede Ecke ist EIN zusammenhaengender Pfad mit spitzer Verbindung (Miter) und
+        // geraden Enden - so entsteht an der Ecke keine Stufe wie bei zwei Einzellinien.
+        strokeJoin = Paint.Join.MITER
+        strokeCap = Paint.Cap.BUTT
         color = cornerColor
     }
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -46,6 +50,7 @@ class QrFrameView @JvmOverloads constructor(
     }
 
     private val frame = RectF()
+    private val cornerPath = Path()
     private var lineProgress = 0.5f
 
     private val lineAnimator = ValueAnimator.ofFloat(0.08f, 0.92f).apply {
@@ -97,24 +102,22 @@ class QrFrameView @JvmOverloads constructor(
         val y = frame.top + frame.height() * lineProgress
         canvas.drawLine(frame.left, y, frame.right, y, linePaint)
 
-        // Eckwinkel, leicht ausserhalb der Umrandung wie im Vorbild
+        // Eckwinkel: Innenkante liegt genau auf der duennen Umrandung
         val len = 22f * density
         val o = cornerPaint.strokeWidth / 2f
         val l = frame.left - o
         val t = frame.top - o
         val r = frame.right + o
         val b = frame.bottom + o
+        cornerPath.reset()
         // oben links
-        canvas.drawLine(l, t, l + len, t, cornerPaint)
-        canvas.drawLine(l, t, l, t + len, cornerPaint)
+        cornerPath.moveTo(l, t + len); cornerPath.lineTo(l, t); cornerPath.lineTo(l + len, t)
         // oben rechts
-        canvas.drawLine(r, t, r - len, t, cornerPaint)
-        canvas.drawLine(r, t, r, t + len, cornerPaint)
-        // unten links
-        canvas.drawLine(l, b, l + len, b, cornerPaint)
-        canvas.drawLine(l, b, l, b - len, cornerPaint)
+        cornerPath.moveTo(r - len, t); cornerPath.lineTo(r, t); cornerPath.lineTo(r, t + len)
         // unten rechts
-        canvas.drawLine(r, b, r - len, b, cornerPaint)
-        canvas.drawLine(r, b, r, b - len, cornerPaint)
+        cornerPath.moveTo(r, b - len); cornerPath.lineTo(r, b); cornerPath.lineTo(r - len, b)
+        // unten links
+        cornerPath.moveTo(l + len, b); cornerPath.lineTo(l, b); cornerPath.lineTo(l, b - len)
+        canvas.drawPath(cornerPath, cornerPaint)
     }
 }
