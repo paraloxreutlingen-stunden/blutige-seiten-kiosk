@@ -81,8 +81,8 @@ Die deutschen Texte liegen in `res/values/strings.xml`, die englischen in
 Die App sieht bewusst wie ein ganz normales, benutztes Smartphone aus - kein
 offensichtliches "Kiosk-Menü":
 
-- **Statusleiste**: eigener Nachbau oben auf allen Bildschirmen (außer Video): Uhrzeit,
-  Mobilfunkempfang, WLAN, Akku-Symbol und Prozent - links und rechts der Kamera-Aussparung.
+- **Statusleiste**: eigener Nachbau oben auf allen Bildschirmen (außer Video): Mobilfunkempfang,
+  WLAN, Akku-Symbol und Prozent (bewusst ohne Uhrzeit, die steht gross auf dem Startbildschirm).
   Die echte Android-Leiste wird ausgeblendet (`StatusBarView`, `KioskBaseActivity`).
 - **Startbildschirm**: euer Katzenfoto als Hintergrundbild, App-Icons wie bei einem
   echten Launcher (Dock unten mit genau den vier echten Funktionen: Telefon/
