@@ -17,7 +17,6 @@
     <string name="qr_start">Scannen starten</string>
     <string name="qr_wrong_code">Dieser Code gehört nicht zu diesem Spiel.</string>
     <string name="qr_scan_failed">Scan fehlgeschlagen, bitte nochmal versuchen.</string>
-    <string name="qr_load_failed">Bild konnte nicht geladen werden. Besteht eine Internetverbindung?</string>
 
     <string name="video_loading">Video wird geladen…</string>
 
@@ -46,8 +45,6 @@
     <string name="cd_delete">Löschen</string>
 
     <!-- Eigener Anrufbildschirm -->
-    <string name="incall_calling">Wird angerufen…</string>
-    <string name="incall_ended">Anruf beendet</string>
     <string name="cd_hang_up">Auflegen</string>
     <string name="cd_speaker">Lautsprecher</string>
 

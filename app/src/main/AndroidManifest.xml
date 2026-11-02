@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Bildschirm aus, solange das Handy waehrend eines Anrufs am Ohr ist (Naeherungssensor) -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Kurze Vibration als textfreie Rueckmeldung (z. B. bei nicht erlaubter Nummer) -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="false"

@@ -25,6 +25,16 @@
             android:layout_height="match_parent"
             android:visibility="gone" />
 
+        <!-- Erscheint, wenn das Bild nicht geladen werden konnte (z. B. kein Internet) -->
+        <ImageView
+            android:id="@+id/errorIcon"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_wifi_off"
+            android:visibility="gone"
+            android:contentDescription="@null" />
+
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="48dp"

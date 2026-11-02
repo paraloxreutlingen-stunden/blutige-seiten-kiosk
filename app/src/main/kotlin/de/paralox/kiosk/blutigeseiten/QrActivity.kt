@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
@@ -45,7 +44,6 @@ class QrActivity : KioskBaseActivity() {
         if (granted) {
             startCamera()
         } else {
-            Toast.makeText(this, getString(R.string.qr_scan_failed), Toast.LENGTH_LONG).show()
             finish()
         }
     }
@@ -103,7 +101,8 @@ class QrActivity : KioskBaseActivity() {
                     imageAnalysis
                 )
             } catch (_: Exception) {
-                Toast.makeText(this, getString(R.string.qr_scan_failed), Toast.LENGTH_LONG).show()
+                binding.qrFrame.flashError()
+                Feedback.error(binding.qrFrame)
             }
         }, ContextCompat.getMainExecutor(this))
     }

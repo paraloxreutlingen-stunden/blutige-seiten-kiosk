@@ -40,6 +40,7 @@ class InCallActivity : KioskBaseActivity() {
     private var callSeen = false
     private var ended = false
     private var connectedAtMillis = 0L
+    private var dots = 0
     private var speakerOn = false
     private var proximityLock: PowerManager.WakeLock? = null
 
@@ -113,14 +114,20 @@ class InCallActivity : KioskBaseActivity() {
                 binding.statusDisplay.text = String.format("%02d:%02d", seconds / 60, seconds % 60)
             }
             Call.STATE_DISCONNECTING, Call.STATE_DISCONNECTED -> onCallEnded()
-            else -> binding.statusDisplay.text = getString(R.string.incall_calling)
+            // Waehlt noch: laufende Punkte statt Text (App ist sprachunabhaengig)
+            else -> {
+                dots = dots % 3 + 1
+                binding.statusDisplay.text = List(dots) { "•" }.joinToString(" ")
+            }
         }
     }
 
     private fun onCallEnded() {
         if (ended) return
         ended = true
-        binding.statusDisplay.text = getString(R.string.incall_ended)
+        // Beendet: Anzeige wird rot, dann zurueck zum Ziffernblock
+        binding.statusDisplay.setTextColor(0xFFE53935.toInt())
+        binding.numberDisplay.setTextColor(0xFFE53935.toInt())
         releaseProximityLock()
         handler.postDelayed({ finish() }, CLOSE_AFTER_END_MS)
     }

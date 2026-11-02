@@ -21,7 +21,6 @@
     <string name="qr_start">Start scanning</string>
     <string name="qr_wrong_code">This code does not belong to this game.</string>
     <string name="qr_scan_failed">Scan failed, please try again.</string>
-    <string name="qr_load_failed">Image could not be loaded. Is there an internet connection?</string>
 
     <string name="video_loading">Loading video…</string>
 
@@ -50,8 +49,6 @@
     <string name="cd_delete">Delete</string>
 
     <!-- Own in-call screen -->
-    <string name="incall_calling">Calling…</string>
-    <string name="incall_ended">Call ended</string>
     <string name="cd_hang_up">Hang up</string>
     <string name="cd_speaker">Speaker</string>
 

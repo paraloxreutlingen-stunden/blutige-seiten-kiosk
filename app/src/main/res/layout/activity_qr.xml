@@ -9,17 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/qrHint"
+    <!-- Sucher-Rahmen statt Hinweistext (App ist bewusst textfrei, siehe QrFrameView) -->
+    <de.paralox.kiosk.blutigeseiten.QrFrameView
+        android:id="@+id/qrFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="#88000000"
-        android:padding="16dp"
-        android:text="@string/qr_hint"
-        android:textColor="@color/text_primary"
-        android:textSize="16sp"
-        android:gravity="center" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp" />
 
     <ImageButton
         android:id="@+id/btnBack"

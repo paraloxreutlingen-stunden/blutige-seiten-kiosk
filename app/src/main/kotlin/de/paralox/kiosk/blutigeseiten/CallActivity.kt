@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.telecom.TelecomManager
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import de.paralox.kiosk.blutigeseiten.databinding.ActivityCallBinding
 
@@ -62,7 +61,7 @@ class CallActivity : KioskBaseActivity() {
         if (granted) {
             placeCall()
         } else {
-            Toast.makeText(this, getString(R.string.call_permission_needed), Toast.LENGTH_LONG).show()
+            Feedback.error(binding.numberDisplay)
         }
     }
 
@@ -87,7 +86,8 @@ class CallActivity : KioskBaseActivity() {
             if (typedNumber.isEmpty()) return@setOnClickListener
 
             if (!isAllowedNumber(typedNumber.toString())) {
-                Toast.makeText(this, getString(R.string.call_number_not_allowed), Toast.LENGTH_LONG).show()
+                // Ohne Text: Nummer kurz rot, schuetteln, vibrieren
+                showNumberRejected()
                 return@setOnClickListener
             }
 
@@ -111,6 +111,13 @@ class CallActivity : KioskBaseActivity() {
         updateDisplay()
     }
 
+    private fun showNumberRejected() {
+        val display = binding.numberDisplay
+        display.setTextColor(0xFFE53935.toInt())
+        Feedback.error(display)
+        display.postDelayed({ display.setTextColor(0xFFFFFFFF.toInt()) }, 900L)
+    }
+
     private fun updateDisplay() {
         binding.numberDisplay.text = typedNumber.toString()
     }
@@ -127,7 +134,7 @@ class CallActivity : KioskBaseActivity() {
         try {
             telecomManager.placeCall(Uri.fromParts("tel", number, null), Bundle())
         } catch (_: SecurityException) {
-            Toast.makeText(this, getString(R.string.call_permission_needed), Toast.LENGTH_LONG).show()
+            Feedback.error(binding.numberDisplay)
             return
         }
         startActivity(

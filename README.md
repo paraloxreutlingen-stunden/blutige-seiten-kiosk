@@ -60,6 +60,14 @@ aber nicht.
 
 ## Sprache
 
+**Was die Spielenden sehen, ist textfrei** - nur Symbole, Zahlen und Farben, damit das
+Handy nicht auf eine bestimmte Sprache umgestellt werden muss: Scanner mit Sucher-Rahmen
+statt Hinweistext, Ladekreis statt "Video wird geladen", beim Anrufen laufende Punkte
+bzw. die Gesprächsdauer, bei nicht erlaubter Nummer wird die Nummer rot, wackelt und das
+Handy vibriert, bei fehlendem Internet erscheint ein "kein WLAN"-Symbol. Text gibt es nur
+noch in den Einrichtungs-Hinweisen für die Spielleitung und im festen Spieldatum auf dem
+Startbildschirm.
+
 Die App gibt es auf Deutsch und Englisch - ganz ohne Umschalter in der App selbst.
 Android wählt automatisch die passende Version anhand der **Sprache des Geräts**
 (Einstellungen → Allgemeine Verwaltung → Sprache und Eingabe → Sprache):

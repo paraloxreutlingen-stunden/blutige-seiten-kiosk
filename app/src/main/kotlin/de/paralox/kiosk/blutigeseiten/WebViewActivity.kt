@@ -8,7 +8,6 @@ import android.view.View
 import android.webkit.RenderProcessGoneDetail
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import de.paralox.kiosk.blutigeseiten.databinding.ActivityWebviewBinding
 import java.net.HttpURLConnection
 import java.net.URL
@@ -81,9 +80,8 @@ class WebViewActivity : KioskBaseActivity() {
                 binding.progress.visibility = View.GONE
                 when {
                     bitmap != null -> showImage(bitmap!!)
-                    failed && isImage -> {
-                        Toast.makeText(this, getString(R.string.qr_load_failed), Toast.LENGTH_LONG).show()
-                    }
+                    // Kein Text: Symbol "keine Verbindung" in der Mitte
+                    failed -> binding.errorIcon.visibility = View.VISIBLE
                     else -> showWebPage(url)
                 }
             }
