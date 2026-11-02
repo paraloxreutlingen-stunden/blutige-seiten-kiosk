@@ -130,7 +130,18 @@ Herunterladen. Kein Android Studio, keine eigene Entwicklungsumgebung nötig.
    **"Artifacts"** liegt **"BlutigeSeitenKiosk-APK"** zum Download (als .zip, darin
    die eigentliche `app-debug.apk`).
 
-### Auf die Handys überspielen
+### Auf die Handys überspielen (am einfachsten: fester Link)
+
+Jeder Build legt die APK zusätzlich unter diesem festen Link ab - ohne ZIP, ohne
+GitHub-Anmeldung. Einfach im Browser des Handys öffnen und die Datei antippen:
+
+**https://github.com/paraloxreutlingen-stunden/blutige-seiten-kiosk/releases/download/apk-aktuell/BlutigeSeitenKiosk.apk**
+
+Die APK ist mit einem festen Schlüssel signiert (`app/debug.keystore`). Neue Versionen
+lassen sich deshalb einfach über die alte installieren; Berechtigungen und
+Standard-Telefon-App bleiben erhalten.
+
+### Alternativ: per Kabel/Datei überspielen
 
 Die heruntergeladene `app-debug.apk` einfach wie jede andere Datei auf jedes Handy
 kopieren (USB-Kabel, Google Drive, E-Mail an sich selbst, WhatsApp an sich selbst -
@@ -167,10 +178,6 @@ Falls doch lieber lokal gebaut werden soll (z. B. durch Benedikt):
   Ohr aus.
 - Bewusst weggelassen (im Spiel nicht nötig): eingehende Anrufe (werden abgelehnt),
   Stummschalten, Halten, zweiter Anruf, Bluetooth-Umschaltung.
-- Jeder GitHub-Build wird mit einem neuen Debug-Schlüssel signiert. Eine neue APK
-  lässt sich deshalb meist nicht über die alte installieren („App nicht
-  installiert"/„Konflikt"): alte App vorher deinstallieren, danach die Einrichtung
-  (Schritt 4) wiederholen.
 - ⚠️ Die Ziel-URL `https://escape-a-la-carte.de/blutige-seiten-qr-code-1` konnte ich
   von hier aus nicht erreichen (Verbindungsfehler) - bitte vor dem Einsatz prüfen,
   ob die Seite schon online ist.

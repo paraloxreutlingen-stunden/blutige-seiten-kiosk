@@ -15,6 +15,20 @@ android {
         versionName = "1.1"
     }
 
+    // Fester Signaturschluessel fuer die Debug-APK. Ohne ihn erzeugt GitHub bei jedem Build
+    // einen neuen Schluessel, und eine neue APK liesse sich nicht ueber die alte installieren
+    // (man muesste jedes Mal deinstallieren und die Einrichtung wiederholen).
+    // Bewusst ein reiner Debug-Schluessel ohne Geheimnis - die App wird nur auf den
+    // eigenen Spiel-Handys per APK installiert, nie im Play Store veroeffentlicht.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
