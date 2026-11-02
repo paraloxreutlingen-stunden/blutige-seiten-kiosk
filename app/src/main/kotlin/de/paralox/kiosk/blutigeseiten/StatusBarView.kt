@@ -16,20 +16,24 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.telephony.TelephonyManager
+import android.text.format.DateFormat
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import java.util.Date
 
 /**
- * Nachgebaute Statusleiste wie bei einem normalen Handy: rechts Mobilfunkempfang, WLAN,
- * Akku-Symbol und Akkustand in Prozent. Bewusst OHNE Uhrzeit - die steht gross auf dem
- * Startbildschirm und waere sonst doppelt.
+ * Nachgebaute Statusleiste wie bei einem normalen Handy: links die Uhrzeit, rechts
+ * Mobilfunkempfang, WLAN, Akku-Symbol und Akkustand in Prozent.
+ *
+ * Auf dem Startbildschirm ist die Uhrzeit ausgeblendet (app:showTime="false"), weil sie dort
+ * schon gross in der Mitte steht.
  *
  * Eigener Nachbau statt der echten Android-Statusleiste, weil diese auf den Spiel-Handys
  * nicht erscheint (und sich ohnehin nicht herunterziehen lassen soll). Die echte Leiste
  * blendet KioskBaseActivity aus, damit nie zwei Leisten uebereinander liegen.
  *
- * Alle Symbole werden gezeichnet - kein Text ausser der Prozentzahl.
+ * Alle Symbole werden gezeichnet - kein Text ausser Uhrzeit und Prozentzahl.
  */
 class StatusBarView @JvmOverloads constructor(
     context: Context,
@@ -39,6 +43,8 @@ class StatusBarView @JvmOverloads constructor(
     private val dp = resources.displayMetrics.density
     private val uiHandler = Handler(Looper.getMainLooper())
 
+    private var timeText = ""
+    private val showTime: Boolean
     private var batteryPercent = -1
     private var charging = false
     private var wifiLevel = -1   // -1 = kein WLAN, sonst 0..3
@@ -76,6 +82,7 @@ class StatusBarView @JvmOverloads constructor(
 
     private val updater = object : Runnable {
         override fun run() {
+            updateTime()
             updateConnections()
             invalidate()
             uiHandler.postDelayed(this, 5_000L)
@@ -83,6 +90,9 @@ class StatusBarView @JvmOverloads constructor(
     }
 
     init {
+        val a = context.obtainStyledAttributes(attrs, R.styleable.StatusBarView)
+        showTime = a.getBoolean(R.styleable.StatusBarView_showTime, true)
+        a.recycle()
         setLayerType(LAYER_TYPE_SOFTWARE, null) // fuer die Schatten unter den Symbolen
     }
 
@@ -102,6 +112,11 @@ class StatusBarView @JvmOverloads constructor(
         } catch (_: Exception) {
         }
         super.onDetachedFromWindow()
+    }
+
+    private fun updateTime() {
+        val pattern = if (DateFormat.is24HourFormat(context)) "HH:mm" else "h:mm"
+        timeText = DateFormat.format(pattern, Date()).toString()
     }
 
     private fun updateBattery(intent: Intent) {
@@ -151,6 +166,9 @@ class StatusBarView @JvmOverloads constructor(
         val iconH = 12f * dp
         val cy = h / 2f
         val baseline = cy - (textPaint.descent() + textPaint.ascent()) / 2f
+
+        // Uhrzeit links
+        if (showTime) canvas.drawText(timeText, padding, baseline, textPaint)
 
         // Rechts, von aussen nach innen: Prozent, Akku, WLAN, Mobilfunk
         var x = width - padding

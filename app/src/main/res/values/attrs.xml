@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StatusBarView">
+        <!-- Uhrzeit links anzeigen (Standard: ja). Auf dem Startbildschirm aus. -->
+        <attr name="showTime" format="boolean" />
+    </declare-styleable>
+</resources>
