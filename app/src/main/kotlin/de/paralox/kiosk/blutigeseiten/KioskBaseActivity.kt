@@ -2,6 +2,7 @@ package de.paralox.kiosk.blutigeseiten
 
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
@@ -44,6 +45,21 @@ abstract class KioskBaseActivity : AppCompatActivity() {
         super.onResume()
         hideRealStatusBar()
         startPinningIfNeeded()
+        showPatternLockIfNeeded()
+    }
+
+    /**
+     * Einmal nach dem Start der App (sobald die Einrichtung erledigt ist) muss das
+     * Entsperrmuster eingegeben werden - siehe AppLock. Nie waehrend eines Anrufs.
+     */
+    protected fun showPatternLockIfNeeded() {
+        if (AppLock.unlocked || AppLock.lockShowing) return
+        if (this is PatternLockActivity || this is InCallActivity) return
+        if (!KioskSetup.isComplete(this)) return
+        AppLock.lockShowing = true
+        startActivity(Intent(this, PatternLockActivity::class.java))
+        @Suppress("DEPRECATION")
+        overridePendingTransition(0, 0)
     }
 
     /**

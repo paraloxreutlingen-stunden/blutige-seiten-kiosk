@@ -11,8 +11,8 @@ android {
         applicationId = "de.paralox.kiosk.blutigeseiten"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
     }
 
     // Fester Signaturschluessel fuer die Debug-APK. Ohne ihn erzeugt GitHub bei jedem Build

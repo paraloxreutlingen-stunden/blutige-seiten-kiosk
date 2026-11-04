@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Eigener Sperrbildschirm: sieht aus wie der Startbildschirm (Hintergrundbild, festes
+     Datum, echte Uhrzeit), unten das 3x3-Muster. Komplett textfrei. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wallpaper_cat"
+        android:contentDescription="@null" />
+
+    <!-- Leichte Abdunklung, damit Muster und Uhr auf dem hellen Bild gut sichtbar sind -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000" />
+
+    <de.paralox.kiosk.blutigeseiten.StatusBarView
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_gravity="top"
+        app:showTime="false" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lock_screen_date"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:shadowColor="#AA000000"
+            android:shadowDx="0"
+            android:shadowDy="1"
+            android:shadowRadius="4" />
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:format12Hour="h:mm"
+            android:format24Hour="HH:mm"
+            android:textColor="#FFFFFF"
+            android:textSize="64sp"
+            android:fontFamily="sans-serif-light"
+            android:shadowColor="#AA000000"
+            android:shadowDx="0"
+            android:shadowDy="2"
+            android:shadowRadius="6" />
+
+    </LinearLayout>
+
+    <de.paralox.kiosk.blutigeseiten.PatternView
+        android:id="@+id/patternView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="72dp" />
+
+</FrameLayout>

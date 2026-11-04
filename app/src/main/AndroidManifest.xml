@@ -41,6 +41,13 @@
         <!-- Waehl-Bildschirm. Die DIAL-Intent-Filter sind Voraussetzung dafuer, dass Android
              die App als Standard-Telefon-App zulaesst. Eine mitgeschickte Nummer wird bewusst
              ignoriert - der Ziffernblock ist immer leer. -->
+        <!-- Eigene Muster-Sperre, einmal nach dem Start der App (siehe AppLock) -->
+        <activity
+            android:name=".PatternLockActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:excludeFromRecents="true" />
+
         <activity
             android:name=".CallActivity"
             android:exported="true"

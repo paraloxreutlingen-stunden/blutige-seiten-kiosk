@@ -117,6 +117,8 @@ class MainActivity : KioskBaseActivity() {
 
         // Alles eingerichtet -> jetzt fixieren.
         startPinningIfNeeded()
+        // ... und einmalig das Entsperrmuster abfragen (siehe AppLock).
+        showPatternLockIfNeeded()
     }
 
     private fun showSetupDialog(messageRes: Int, openSettings: () -> Unit) {

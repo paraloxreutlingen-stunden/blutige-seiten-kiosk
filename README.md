@@ -49,6 +49,16 @@ die Spielleitung.
 Die Rufnummer der Spielleitung (0176 80297001) ist bereits fest in der App
 hinterlegt (`SmsActivity.kt`) - dafür ist nichts mehr einzustellen.
 
+## Entsperrmuster in der App
+
+Während die App fixiert ist, verlangt Android beim Einschalten des Bildschirms **kein**
+Muster mehr. Deshalb fragt die App selbst das Muster ab: **einmal nach dem Start**
+(nach der Einrichtung), danach nicht mehr, bis die App neu gestartet wird. Falsches
+Muster: Linien werden rot, das Handy vibriert, nochmal versuchen.
+
+Lösung (Punkte 1-9 zeilenweise von oben links): **1-2-4-7-5-8-9-6-3** -
+hinterlegt in `AppLock.kt`.
+
 ## Vor jedem Spiel (Reset-Routine für die Spielleitung)
 
 1. App öffnen (oder zurück ins Hauptmenü, falls sie schon lief).
